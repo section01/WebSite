@@ -7,6 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <script type="text/javascript">
+        /**
+         * 予約済みの席を特定
+         */
+        function box_reserved() {
+            const reserved = document.getElementById("reserved").value.trim().split(',');
+            reserved.forEach(id => {
+                document.getElementById(id).classList.add("box_reserved");
+            });
+        }
+
+        /**
+         * 選択した席を設定
+         */
+        function box_click(dom) {
+            document.getElementById("box_select").value = dom.id;
+        }
+
+        /**
+         * 初期表示
+         */
+        window.onload = () => {
+            box_reserved();
+        }
+    </script>
     <style>
         body {
             margin: 10px;
@@ -15,6 +40,12 @@
             border: solid 1px;
             width: 100px;
             height: 100px;
+        }
+        td.box:hover {
+            background-color: lightblue;
+        }
+        td.box_reserved {
+            background-color: darkgray;
         }
         td.space {
             border: 0 !important;
@@ -28,28 +59,20 @@
     </header>
     <main>
         <center>
-            <table class="seat">
-                @for (var i = 0; i < 6; i++)
-                {
-                <tr>
-                    <td class="box" id="@(i + 1)"></td>
-                    <td class="box" id="@(i + 2)"></td>
-                    <td class="space"></td>
-                    <td class="box" id="@(i + 3)"></td>
-                    <td class="box" id="@(i + 4)"></td>
-                    <td class="space"></td>
-                    <td class="box" id="@(i + 5)"></td>
-                    <td class="box" id="@(i + 6)"></td>
-                    <td class="space"></td>
-                    <td class="box" id="@(i + 7)"></td>
-                    <td class="box" id="@(i + 8)"></td>
-                    <td class="space"></td>
-                    <td class="box" id="@(i + 9)"></td>
-                    <td class="box" id="@(i + 10)"></td>
-                    <td class="space"></td>
-                </tr>
+            <table>
+                @for (var i = 1; i <= 6; i++) {
+                    <tr>
+                    @for (var j = 1; j <= 10; j++) {
+                        <td class="box" id="@(i)_@(j)" onclick="box_click(this);"></td>
+                        @if (j % 2 == 0) {
+                            <td class="space"></td>
+                        }
+                    }
+                    </tr>
                 }
             </table>
+            <input type="text" id="box_select" name="box_select" value="" />
+            <input type="text" id="reserved" name="reserved" value="1_1,1_3,1_8" />
         </center>
     </main>
     <footer>
