@@ -4,24 +4,24 @@ using System;
 
 namespace web.Controllers
 {
-    public class LoginController : Controller
+    public class BoxController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<BoxController> _logger;
 
-        public LoginController(ILogger<LoginController> logger)
+        public BoxController(ILogger<BoxController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Init()
         {
-            return View("login");
+            return View("box");
         }
 
         [HttpPost]
         public IActionResult Login()
         {
-            return View("login");
+            return View("box");
         }
     }
 }

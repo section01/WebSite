@@ -37,7 +37,7 @@ namespace web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Init}");
+                    pattern: "{controller=Box}/{action=Init}");
             });
         }
     }
