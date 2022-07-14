@@ -1,23 +1,24 @@
 ﻿body {
-    margin: 10px;
+    background-color: #f3ebf2;
 }
 
 td.box {
     border: solid 1px;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
 }
 
-    td.box:hover {
-        background-color: lightblue;
-    }
-
-td.box_reserved {
-    background-color: darkgray;
+td.box:hover {
+    background-color: #b2dae8;
 }
 
 td.space {
     border: 0 !important;
     width: 50px;
     height: 50px;
+}
+
+.card {
+    background-color: #ffffff;
 }

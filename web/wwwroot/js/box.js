@@ -1,23 +1,15 @@
-﻿/**
- * 予約済みの席を特定
- */
-function box_reserved() {
-    const reserved = document.getElementById("reserved").value.trim().split(',');
-    reserved.forEach(id => {
-        document.getElementById(id).classList.add("box_reserved");
-    });
+﻿function box_click(dom) {
+    for (const i of document.querySelectorAll(".reserved")) {
+        if (dom.id === i.value) {
+            return;
+        }
+    }
+    document.getElementById("box_num").value = dom.id;
 }
 
-/**
- * 選択した席を設定
- */
-function box_click(dom) {
-    document.getElementById("box_select").value = dom.id;
-}
-
-/**
- * 初期表示
- */
 window.onload = () => {
-    box_reserved();
+    for (const i of document.querySelectorAll(".reserved")) {
+        let dom = document.getElementById(i.value);
+        dom.style.backgroundColor = "#FFFF00";
+    }
 }

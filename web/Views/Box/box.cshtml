@@ -13,23 +13,52 @@
 <body>
     <header>
     </header>
-    <main>
-        <center>
-            <table>
-                @for (var i = 1; i <= 6; i++) {
-                    <tr>
-                    @for (var j = 1; j <= 10; j++) {
-                        <td class="box" id="@(i)_@(j)" onclick="box_click(this);"></td>
-                        @if (j % 2 == 0) {
+    <main class="container">
+        @using (Html.BeginForm("Register", "Box", FormMethod.Post))
+        {
+            <center>
+                <table>
+                    @for (var i = 1; i <= 10; i++) {
+                        <tr>
+                            <td class="box" id="@(i + 00)" onclick="box_click(this);">@(i + 00)</td>
+                            <td class="box" id="@(i + 10)" onclick="box_click(this);">@(i + 10)</td>
                             <td class="space"></td>
-                        }
+                            <td class="box" id="@(i + 20)" onclick="box_click(this);">@(i + 20)</td>
+                            <td class="box" id="@(i + 30)" onclick="box_click(this);">@(i + 30)</td>
+                            <td class="space"></td>
+                            <td class="box" id="@(i + 40)" onclick="box_click(this);">@(i + 40)</td>
+                            <td class="box" id="@(i + 50)" onclick="box_click(this);">@(i + 50)</td>
+                            <td class="space"></td>
+                        </tr>
                     }
-                    </tr>
+                </table>
+            </center>
+            <div class="card m-3 p-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="box_num">座席番号</label>
+                            <input type="text" id="box_num" name="box_num" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <input type="submit" class="btn btn-sm btn-primary" id="reserve" name="register" value="予約" />
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-sm btn-danger"  id="cancel"  name="register"  value="予約取消" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (ViewBag.reserved != null)
+            {
+                @foreach(var v in ViewBag.reserved)
+                {
+                    <input type="hidden" class="reserved" value="@v" />
                 }
-            </table>
-            <input type="text" id="box_select" name="box_select" value="" />
-            <input type="text" id="reserved" name="reserved" value="1_1,1_3,1_8" />
-        </center>
+            }
+        }
     </main>
     <footer>
     </footer>
